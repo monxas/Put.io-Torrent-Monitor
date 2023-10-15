@@ -37,12 +37,9 @@ class MyHandler(FileSystemEventHandler):
         # Upload the newly created file to Put.io with the specified parent ID
         upload_file = client.File.upload(file_path, parent_id=parent_id)
 
-        # Check if the upload was successful
+        # Check if the upload was successful and print a message
         if upload_file:
-            upload_file_str = upload_file.decode('utf-8')  # Decode bytes to string
-            print(f"File uploaded successfully to Put.io. File ID: {upload_file_str}")
-        else:
-            print("Failed to upload file to Put.io.")
+            print(f"File uploaded successfully to Put.io. File ID: {upload_file.id}")
 
     def get_parent_id_for_folder(self, folder_path):
         # Get the parent ID for the specified folder
