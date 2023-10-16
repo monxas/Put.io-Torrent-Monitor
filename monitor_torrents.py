@@ -5,15 +5,23 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import putiopy
 
-def is_file_done_downloading(file_path):
+def is_file_done_downloading(file_path, timeout=30):
     prev_size = 0
+    start_time = time.time()
+    
     while True:
         current_size = os.path.getsize(file_path)
+        
         if current_size == prev_size:
             return True
-        else:
-            prev_size = current_size
-            time.sleep(1)
+
+        prev_size = current_size
+
+        if time.time() - start_time > timeout:
+            print("File download check timed out.")
+            return False
+        
+        time.sleep(3)
 
 # Put.io API credentials
 PUTIO_OAUTH_TOKEN = os.environ.get('PUTIO_OAUTH_TOKEN')
@@ -36,6 +44,7 @@ class MyHandler(FileSystemEventHandler):
                 print(f"File uploaded successfully to Put.io. File ID: {upload_file.id}")
 
 if __name__ == "__main__":
+    print(f"Starting to monitor {folder_to_monitor}...") 
     event_handler = MyHandler()
     observer = Observer()
     observer.schedule(event_handler, path=folder_to_monitor, recursive=False)
