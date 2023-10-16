@@ -5,16 +5,16 @@ import putiopy
 import os
 
 # Put.io API credentials
-CLIENT_ID = "15"
-CLIENT_SECRET = "nr5taj15dg0f80x7sw8h"
-OAUTH_TOKEN = "4GXATZHKOFMUF5AAN3SN"
+CLIENT_ID = "6534"
+CLIENT_SECRET = "AWTA4H52Y6EVGBSSRQ5J"
+OAUTH_TOKEN = "FBVHUID47SMLBCIBIHKR"
 
 # Create a Put.io client
 client = putiopy.Client(OAUTH_TOKEN)
 
 # Define the folders to monitor inside the Docker container
 folders_to_monitor = {
-    "/data/torrents/sonarr": 718436026,  # Map sonarr folder to sonarr_parent_id
+    "/data/torrents/sonarr": 1244743180,  # Map sonarr folder to sonarr_parent_id
     "/data/torrents/radarr": 1244692884  # Map radarr folder to radarr_parent_id
 }
 
