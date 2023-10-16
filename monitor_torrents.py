@@ -44,6 +44,9 @@ class MyHandler(FileSystemEventHandler):
         if event.is_directory:
             return
         file_path = event.src_path
+        if file_path.endswith('.txt'):
+            print(f"Ignoring text file: {file_path}")
+            return
         if is_file_done_downloading(file_path):
             upload_file = client.File.upload(file_path, parent_id=parent_id)
             if upload_file:
