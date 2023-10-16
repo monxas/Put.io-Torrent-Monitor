@@ -5,14 +5,16 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import putiopy
 
-def is_file_done_downloading(file_path, timeout=30):
+def is_file_done_downloading(file_path, timeout=60):
     prev_size = 0
     start_time = time.time()
     
     while True:
         current_size = os.path.getsize(file_path)
-        
-        if current_size == prev_size:
+        print(f"Checking file: {file_path}, current size: {current_size}, previous size: {prev_size}")
+
+        if current_size == prev_size and current_size > 0:
+            print("File download seems complete.")
             return True
 
         prev_size = current_size
@@ -21,7 +23,7 @@ def is_file_done_downloading(file_path, timeout=30):
             print("File download check timed out.")
             return False
         
-        time.sleep(3)
+        time.sleep(5)
 
 # Put.io API credentials
 PUTIO_OAUTH_TOKEN = os.environ.get('PUTIO_OAUTH_TOKEN')

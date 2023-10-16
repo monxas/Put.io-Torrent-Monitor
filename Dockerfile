@@ -11,4 +11,4 @@ RUN pip install watchdog putio.py
 COPY monitor_torrents.py .
 
 # Run your script when the container starts
-CMD ["python", "monitor_torrents.py"]
+CMD ["python", "-u", "monitor_torrents.py"]
