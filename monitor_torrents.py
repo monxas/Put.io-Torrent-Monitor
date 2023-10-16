@@ -33,6 +33,10 @@ client = putiopy.Client(PUTIO_OAUTH_TOKEN)
 folder_to_monitor = '/torrents'
 parent_id = os.environ.get('PARENT_ID')
 
+# Create the folder if it doesn't exist
+if not os.path.exists(folder_to_monitor):
+    os.makedirs(folder_to_monitor)
+
 class MyHandler(FileSystemEventHandler):
     def on_created(self, event):
         if event.is_directory:
@@ -44,7 +48,7 @@ class MyHandler(FileSystemEventHandler):
                 print(f"File uploaded successfully to Put.io. File ID: {upload_file.id}")
 
 if __name__ == "__main__":
-    print(f"Starting to monitor {folder_to_monitor}...") 
+    print(f"Starting to monitor {folder_to_monitor} ...") 
     event_handler = MyHandler()
     observer = Observer()
     observer.schedule(event_handler, path=folder_to_monitor, recursive=False)
