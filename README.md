@@ -1,7 +1,3 @@
-### README.md
-
----
-
 # Put.io Torrent Monitor
 
 A simple torrent monitoring tool that watches for new torrents in a specified folder (blackhole) and automatically uploads them to Put.io.
