@@ -56,3 +56,6 @@ This tool uses the watchdog library to monitor the specified folder for new file
 
 ---
 
+docker build -t putio-torrent-monitor .
+docker tag putio-torrent-monitor monxas/putio-torrent-monitor:dev
+docker push monxas/putio-torrent-monitor:dev
