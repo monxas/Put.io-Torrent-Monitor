@@ -37,7 +37,7 @@ parent_id = os.environ.get('PARENT_ID')
 
 # Create the folder if it doesn't exist
 if not os.path.exists(folder_to_monitor):
-    os.makedirs(folder_to_monitor)
+    os.makedirs(folder_to_monitor, exist_ok=True)
 
 class MyHandler(FileSystemEventHandler):
     def on_created(self, event):
